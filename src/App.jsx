@@ -13,38 +13,47 @@ function App() {
     let addTodo = (todo) => {
         // the todoItem that we passed in the above is from the form element
 
-        // setTodos((prev) => {
-        //     // (prev) => { ... }: This is an arrow function that takes an argument
-        //     // named prev. This prev argument represents the current state of the todos
-        //     // list before the update.
+        // setTodos((prevTodos) => {
+        //     // Create a new todo object
+        //     const newTodo = {
+        //         id: Date.now(),
+        //         text: todo,
+        //         completed: false
+        //     };
         //
-        //     // [{}]: This creates a new, empty object at the beginning of the array.
-        //     // ...prev: This spreads the existing prev array (your current
-        //     // todoItem list) after the new empty object. By spreading it,
-        //     // you're essentially copying all the existing todos into the new array.
+        //     // Create a new array with the new todo at the beginning
+        //     const updatedTodos = [newTodo, ...prevTodos];
         //
-        //     return (
-        //         [{
-        //             id: Date.now(),
-        //             todo: todo,
-        //             completed: false
-        //         }, ...prev]
-        //     )
-        // })
+        //     // Return the new array to update the state
+        //     return updatedTodos;
+        // });
+
         setTodos((prev) => [{id:Date.now(), ...todo, completed:false},  ...prev])
         // console.log(todos)
     }
 
     let updateTodo = (id, todo) => {
-        // setTodos((prev) => {
-        //     return (
-        //         prev.map((prevTodo) => {
-        //             if (prevTodo.id === id) {
-        //                 return todo;
-        //             }
-        //         })
-        //     )
-        // })
+        // setTodos((prevTodos) => {
+        //     // Create a new array to store the updated todos
+        //     const newTodos = [];
+        //
+        //     // Loop through each todo in the previous state
+        //     for (let i = 0; i < prevTodos.length; i++) {
+        //         const currentTodo = prevTodos[i];
+        //
+        //         // If the current todo's id matches the id we want to update
+        //         if (currentTodo.id === id) {
+        //             // Add the updated todo to the new array
+        //             newTodos.push(updatedTodo);
+        //         } else {
+        //             // Otherwise, add the original todo to the new array
+        //             newTodos.push(currentTodo);
+        //         }
+        //     }
+        //
+        //     // Return the new array to update the state
+        //     return newTodos;
+        // });
         //above setTodos can also be written as:
         setTodos((prev) => prev.map((prevTodo) =>
             (prevTodo.id === id ? todo : prevTodo)))
@@ -53,12 +62,40 @@ function App() {
     let deleteTodo = (id) => {
         setTodos((prev) =>
             prev.filter((todo) => todo.id !== id))
+        // setTodos((prevTodos) => {
+        //     const newTodos = [];
+        //     for (let i = 0; i < prevTodos.length; i++) {
+        //         const currentTodo = prevTodos[i];
+        //         if (currentTodo.id !== id) {
+        //             newTodos.push(currentTodo);
+        //         }
+        //     }
+        //     return newTodos;
+        // });
+
         // this filter will only return the true condition and if condition
         // is false then it will not be returned so that id is deleted
         // automatically
     }
 
     let toggleComplete = (id) => {
+
+        // setTodos((prevTodos) => {
+        //     const newTodos = [];
+        //     for (let i = 0; i < prevTodos.length; i++) {
+        //         const currentTodo = prevTodos[i];
+        //         if (currentTodo.id === id) {
+        //             newTodos.push({
+        //                 ...currentTodo,
+        //                 completed: !currentTodo.completed
+        //             });
+        //         } else {
+        //             newTodos.push(currentTodo);
+        //         }
+        //     }
+        //     return newTodos;
+        // });
+
         setTodos((prev) => prev.map((prevTodo) =>
         prevTodo.id === id ? {...prevTodo, completed: !prevTodo.completed} : prevTodo
         ))

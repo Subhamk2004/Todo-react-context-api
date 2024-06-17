@@ -28,7 +28,7 @@ export let useTodo = () => {
     return useContext(TodoContext);
 }
 
-// benefit of the above hook is that whenever we will be using the hook we
+// the benefit of the above hook is that whenever we will be using the hook we
 // don't have to pass the TodoContext in the useContext,
 
 // we will directly
